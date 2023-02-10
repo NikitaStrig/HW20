@@ -6,52 +6,90 @@ import java.util.function.*;
 
 public class Main {
     public static void main(String[] args) {
-        List<Init> initList = Arrays.asList(
-                new Init(1),
-                new Init(-3),
-                new Init(5)
+        List<Hw20> hw20ListList = Arrays.asList(
+                new Hw20("Sergey", 1, 3_4),
+                new Hw20("Petr", -8, 37_4),
+                new Hw20("Max", 13, 312_4)
         );
-        Predicate<Init> intPrediceit = new pred();
-        for (Init init : initList) {
-            if (intPrediceit.test(init)) {
-                System.out.println(init);
 
-            }
-        }
-
-
-        List<Name> nameList = Arrays.asList(
-                new Name("Sergey"),
-                new Name("Petr"),
-                new Name("Nikita")
-        );
-        Consumer<Name> nameConsumer = new Consumer<Name>() {
+        System.out.println("---Predicate----");
+        Predicate<Hw20> intPrediceit = new Predicate<Hw20>() {
             @Override
-            public void accept(Name name) {
-                System.out.println("Hi! " + name.getName());
+            public boolean test(Hw20 hw20) {
+                return hw20.getAge() > 0;
             }
         };
-        for (Name name : nameList) {
-            nameConsumer.accept(name);
+        for (Hw20 hw20 : hw20ListList) {
+            if (intPrediceit.test(hw20)) {
+                System.out.println(hw20.getAge());
+            }
 
         }
-        Consumer<Name> nameConsumer1 = nameConsumer1 -> ;;
+        System.out.println("---L----");
+        Predicate<Hw20> intPrediceit1 = hw20 -> hw20.getAge() > 0;
+        for (Hw20 hw20 : hw20ListList) {
+            if (intPrediceit1.test(hw20)) {
+                System.out.println(hw20.getAge());
+            }
 
-        List<DoubleInt> dou = Arrays.asList(
-                new DoubleInt(3_4),
-                new DoubleInt(100_4),
-                new DoubleInt(34_8)
-                );
-        Function<DoubleInt, Long> function = new Function<DoubleInt, Long>() {
-
+        }
+        System.out.println("---Consumer----");
+        Consumer<Hw20> nameConsumer = new Consumer<Hw20>() {
             @Override
-            public Long apply(DoubleInt doubleInt) {
-                return doubleInt.getCheck();
+            public void accept(Hw20 hw20) {
+                System.out.println("Hi! " + hw20.getName());
             }
         };
-        for (DoubleInt doubleInt : dou) {
-            System.out.println(function.apply(doubleInt));
+        for (Hw20 hw20 : hw20ListList) {
+            nameConsumer.accept(hw20);
 
         }
+        System.out.println("----L---");
+        Consumer<Hw20> nameConsumer1 = hw20 -> System.out.println("Hi! " + hw20.getName());
+        for (Hw20 hw20 : hw20ListList) {
+            nameConsumer1.accept(hw20);
+
+        }
+        System.out.println("-----Function------");
+        Function<Hw20, Long> function = new Function<Hw20, Long>() {
+            @Override
+            public Long apply(Hw20 hw20) {
+                return hw20.getCheck();
+            }
+        };
+        for (Hw20 hw20 : hw20ListList) {
+            System.out.println(function.apply(hw20));
+
+        }
+
+        System.out.println("----L---");
+        Function<Hw20, Long> function1 = hw20 -> hw20.getCheck();
+        for (Hw20 hw20 : hw20ListList) {
+            System.out.println(function1.apply(hw20));
+
+        }
+        System.out.println("--------Supplier-------");
+
+        Supplier<Double> integerSupplier = new Supplier<Double>() {
+
+            @Override
+            public Double get() {
+                final double max = 100;
+                return Math.random() * max;
+            }
+        };
+        System.out.println(integerSupplier.get());
+
+        System.out.println("--L--");
+        Supplier<Double> integerSupplier1 = () -> {
+            final double max = 100;
+            return Math.random() * max;
+        };
+        System.out.println(integerSupplier1.get());
+
+        System.out.println("----");
+
+
     }
+
 }
