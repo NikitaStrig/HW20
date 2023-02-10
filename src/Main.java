@@ -88,8 +88,6 @@ public class Main {
         System.out.println(integerSupplier1.get());
 
         System.out.println("----");
-
-
     }
 
 }
