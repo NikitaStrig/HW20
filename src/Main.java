@@ -90,4 +90,21 @@ public class Main {
         System.out.println("----");
     }
 
-}
+
+
+    }
+
+
+    Задание 1
+            Напишите метод public static void findMinMax, который будет находить в стриме минимальный и максимальный элементы в соответствии с порядком, заданным Comparator'ом.
+        Данный метод принимает на вход 3 элемента:
+        Stream <? extends T> stream
+        Comparator <? super T> order
+        BiConsumer <? super T, ? super T> minMaxConsumer
+        Найденные минимальный и максимальный элементы передавайте в
+        minMaxConsumer
+        следующим образом:
+        minMaxConsumer.accept(min, max);
+        Если стрим не содержит элементов, то вызывайте:
+        minMaxConsumer.accept(null, null);
+
